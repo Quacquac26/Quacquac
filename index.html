@@ -97,9 +97,9 @@
                     <a href="#products" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-brand-600/30 transition-all text-sm">
                         Khám Phá Ngay
                     </a>
-                    <button onclick="filterCategory('keyboard')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl backdrop-blur-md transition-all text-sm border border-white/10">
+                    <a href="#category-keyboard" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl backdrop-blur-md transition-all text-sm border border-white/10">
                         Bàn Phím Cơ Hot
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
 
         <!-- Product Grid -->
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Products rendered dynamically -->
+            <!-- Products will be rendered dynamically via JavaScript -->
         </div>
 
     </main>
@@ -138,6 +138,7 @@
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- Cart Header -->
                 <div class="p-6 border-b border-gray-200 flex items-center justify-between bg-gray-50">
                     <div class="flex items-center space-x-2">
                         <i class="fa-solid fa-bag-shopping text-brand-600 text-lg"></i>
@@ -147,7 +148,11 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-100"></div>
+                <!-- Cart Items List -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-100">
+                    <!-- Items injected here -->
+                </div>
+                <!-- Cart Footer -->
                 <div class="p-6 border-t border-gray-200 bg-gray-50">
                     <div class="flex items-center justify-between mb-4">
                         <span class="text-sm text-gray-600 font-medium">Tổng tiền tạm tính:</span>
@@ -198,6 +203,7 @@
 
     <!-- JavaScript Data & Logic -->
     <script>
+        // Product Database including user requested keyboards
         const products = [
             {
                 id: 1,
@@ -205,8 +211,7 @@
                 category: "keyboard",
                 price: 999999,
                 formattedPrice: "999.999 VNĐ",
-                image: "https://i.ibb.co/Nnys03Xb/image.jpg",
-                fallbackImage: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
+                image: "https://ibb.co/Nnys03Xb",
                 tag: "Mới nhất",
                 badgeColor: "bg-purple-600"
             },
@@ -216,8 +221,7 @@
                 category: "keyboard",
                 price: 699999,
                 formattedPrice: "699.999 VNĐ",
-                image: "https://i.ibb.co/BHbdzTTQ/image.jpg",
-                fallbackImage: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80",
+                image: "https://ibb.co/BHbdzTTQ",
                 tag: "Bán chạy",
                 badgeColor: "bg-brand-600"
             },
@@ -227,8 +231,7 @@
                 category: "keyboard",
                 price: 699999,
                 formattedPrice: "699.999 VNĐ",
-                image: "https://i.ibb.co/qM5MFbZ7/image.jpg",
-                fallbackImage: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80",
+                image: "https://ibb.co/qM5MFbZ7",
                 tag: "Hot",
                 badgeColor: "bg-emerald-600"
             },
@@ -239,7 +242,6 @@
                 price: 890000,
                 formattedPrice: "890.000 VNĐ",
                 image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
-                fallbackImage: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
                 tag: "Phổ biến",
                 badgeColor: "bg-blue-600"
             },
@@ -250,7 +252,6 @@
                 price: 1450000,
                 formattedPrice: "1.450.000 VNĐ",
                 image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80",
-                fallbackImage: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=600&q=80",
                 tag: "Cao cấp",
                 badgeColor: "bg-indigo-600"
             },
@@ -261,7 +262,6 @@
                 price: 490000,
                 formattedPrice: "490.000 VNĐ",
                 image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
-                fallbackImage: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
                 tag: "Gaming",
                 badgeColor: "bg-amber-600"
             },
@@ -272,7 +272,6 @@
                 price: 950000,
                 formattedPrice: "950.000 VNĐ",
                 image: "https://images.unsplash.com/photo-1609592424155-2305822f3e8b?auto=format&fit=crop&w=600&q=80",
-                fallbackImage: "https://images.unsplash.com/photo-1609592424155-2305822f3e8b?auto=format&fit=crop&w=600&q=80",
                 tag: "Siêu sạc",
                 badgeColor: "bg-teal-600"
             },
@@ -283,7 +282,6 @@
                 price: 320000,
                 formattedPrice: "320.000 VNĐ",
                 image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80",
-                fallbackImage: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80",
                 tag: "Làm mát",
                 badgeColor: "bg-rose-600"
             }
@@ -291,6 +289,7 @@
 
         let cart = [];
 
+        // Render products to grid
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -307,7 +306,7 @@
                 card.className = "bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group";
                 card.innerHTML = `
                     <div class="relative overflow-hidden bg-gray-100 aspect-square">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${product.fallbackImage}';">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80'">
                         <span class="absolute top-3 left-3 ${product.badgeColor} text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow">
                             ${product.tag}
                         </span>
@@ -331,6 +330,7 @@
             });
         }
 
+        // Filter category handler
         function filterCategory(category) {
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('bg-gray-900', 'text-white', 'shadow-md');
@@ -338,14 +338,13 @@
             });
 
             const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
-                activeBtn.classList.add('bg-gray-900', 'text-white', 'shadow-md');
-            }
+            activeBtn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+            activeBtn.classList.add('bg-gray-900', 'text-white', 'shadow-md');
 
             renderProducts(category);
         }
 
+        // Cart management
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             const existing = cart.find(item => item.id === productId);
@@ -369,4 +368,18 @@
             badge.innerText = totalCount;
 
             if (cart.length === 0) {
-                itemsContainer.innerHTML = `<div class="text-center py-12 text-gray-400 text-s
+                itemsContainer.innerHTML = `<div class="text-center py-12 text-gray-400 text-sm">Giỏ hàng của bạn đang trống</div>`;
+                totalElement.innerText = "0 VNĐ";
+                return;
+            }
+
+            itemsContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = "py-4 flex items-center justify-between";
+                div.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover bg-gray-100" onerror="this.src='https://images.unsplash.com/photo-1587829741301-dc798b83add3?aut
